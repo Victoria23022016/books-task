@@ -1,0 +1,31 @@
+.main__navbar {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  background-color: #1976d2;
+  color: black;
+  font-weight: 600;
+  font-family: Arial, Helvetica, sans-serif;
+  justify-content: flex-end;
+  padding: 20px;
+  margin: 0 auto;
+}
+
+.main__title {
+  margin: auto;
+}
+
+.main__holder {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.main__btn {
+  border-radius: 5px;
+}
+
+.main__container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
