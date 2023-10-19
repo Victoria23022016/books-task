@@ -1,0 +1,22 @@
+<tr class="book">
+  <a [routerLink]="['/detailed', +book.isbn13]">
+    <td><img class="book__img" src="{{ book.image }}" /></td>
+    <td class="book__title">{{ book.title }}</td>
+    <td>{{ book.price }}</td>
+    <td>Description</td>
+  </a>
+  <td>
+    <button
+      (click)="addToCart(book)"
+      [ngClass]="{
+        book__btn_activated: inCart,
+        book__btn_notactivated: !inCart
+      }"
+    >
+      Add to cart
+    </button>
+    <div *ngIf="inCart">
+      <p>Book has been added to the cart</p>
+    </div>
+  </td>
+</tr>

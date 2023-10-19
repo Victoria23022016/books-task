@@ -1,0 +1,14 @@
+<h1>Cart:</h1>
+<table>
+  <tbody *ngFor="let book of books">
+    <tr class="cart">
+      <a [routerLink]="['/detailed', +book.isbn13]">
+        <td><img class="cart__img" src="{{ book.image }}" /></td>
+        <td>{{ book.title }}</td>
+        <td>{{ book.price }}</td>
+        <td>Description</td>
+      </a>
+      <td><button (click)="removeFromCart(book)">Remove from cart</button></td>
+    </tr>
+  </tbody>
+</table>

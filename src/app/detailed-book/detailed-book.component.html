@@ -1,0 +1,22 @@
+<div class="detailed">
+  <p>
+    <img class="detailed__img" src="{{ book.image }}" />
+  </p>
+  <div class="detailed__info">
+    <h2 class="detailed__title">{{ book.title }}</h2>
+    <p></p>
+    <p>{{ book.price }}</p>
+    <button
+      (click)="addToCart(book)"
+      [ngClass]="{
+        detailed__btn_activated: inCart,
+        detailed__btn_notactivated: !inCart
+      }"
+    >
+      Add to cart
+    </button>
+    <div *ngIf="inCart">
+      <p>Book has been added to the cart</p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+.books__table {
+  border: 1px solid grey;
+  padding: 10px;
+  margin-top: 10px;
+
+  /*width: 1000px;*/
+}
+
+.books__header {
+}
+
+.books__rows:nth-child(odd) {
+  background-color: grey;
+}

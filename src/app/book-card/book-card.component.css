@@ -1,0 +1,24 @@
+.book {
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-weight: 200;
+  /*display: grid;*/
+}
+
+.book__title {
+  font-weight: 400;
+}
+
+.book__img {
+  width: 100px;
+  height: 100px;
+}
+
+.book__btn_activated {
+  pointer-events: none;
+  background: red;
+}
+
+.book__btn_noactivated {
+  pointer-events: all;
+}

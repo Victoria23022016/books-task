@@ -1,0 +1,30 @@
+.detailed {
+  padding: 1rem;
+  border: #ccc 1px dotted;
+  margin: 0.7rem 0;
+  display: flex;
+  flex-direction: row;
+  color: black;
+}
+
+.detailed__info {
+  display: flex;
+  flex-direction: column;
+}
+
+.detailed__img {
+  width: 500px;
+  height: 550px;
+}
+
+.detailed__title {
+}
+
+.detailed__btn_activated {
+  pointer-events: none;
+  background: red;
+}
+
+.detailed__btn_noactivated {
+  pointer-events: all;
+}
