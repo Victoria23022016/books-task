@@ -10,6 +10,7 @@ import { BookCardComponent } from './book-card/book-card.component';
 import { BooksComponent } from './books/books.component';
 import { ErrorComponent } from './error/error.component';
 import { CartCalculationComponent } from './cart-calculation/cart-calculation.component';
+import { BookSearchComponent } from './book-search/book-search.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { CartCalculationComponent } from './cart-calculation/cart-calculation.co
     BooksComponent,
     ErrorComponent,
     CartCalculationComponent,
+    BookSearchComponent,
   ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],
