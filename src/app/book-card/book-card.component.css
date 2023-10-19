@@ -13,3 +13,12 @@
   width: 100px;
   height: 100px;
 }
+
+.book__btn_activated {
+  pointer-events: none;
+  background: red;
+}
+
+.book__btn_noactivated {
+  pointer-events: all;
+}

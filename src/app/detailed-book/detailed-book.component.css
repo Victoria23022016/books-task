@@ -19,3 +19,12 @@
 
 .detailed__title {
 }
+
+.detailed__btn_activated {
+  pointer-events: none;
+  background: red;
+}
+
+.detailed__btn_noactivated {
+  pointer-events: all;
+}

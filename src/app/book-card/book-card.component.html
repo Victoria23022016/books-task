@@ -5,5 +5,18 @@
     <td>{{ book.price }}</td>
     <td>Description</td>
   </a>
-  <td><button>Add to cart</button></td>
+  <td>
+    <button
+      (click)="addToCart(book)"
+      [ngClass]="{
+        book__btn_activated: inCart,
+        book__btn_notactivated: !inCart
+      }"
+    >
+      Add to cart
+    </button>
+    <div *ngIf="inCart">
+      <p>Book has been added to the cart</p>
+    </div>
+  </td>
 </tr>

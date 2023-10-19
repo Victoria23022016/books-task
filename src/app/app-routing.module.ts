@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { CartComponent } from './cart/cart.component';
 import { MainPageComponent } from './main-page/main-page.component';
 import { ErrorComponent } from './error/error.component';
-import { DetailedComponent } from './detailed/detailed.component';
+import { DetailedComponent } from './detailed-book/detailed-book.component';
 
 const routes: Routes = [
   { path: '', component: MainPageComponent },

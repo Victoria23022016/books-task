@@ -5,10 +5,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MainPageComponent } from './main-page/main-page.component';
 import { CartComponent } from './cart/cart.component';
-import { DetailedComponent } from './detailed/detailed.component';
+import { DetailedComponent } from './detailed-book/detailed-book.component';
 import { BookCardComponent } from './book-card/book-card.component';
 import { BooksComponent } from './books/books.component';
 import { ErrorComponent } from './error/error.component';
+import { CartCalculationComponent } from './cart-calculation/cart-calculation.component';
 
 @NgModule({
   declarations: [
@@ -18,13 +19,11 @@ import { ErrorComponent } from './error/error.component';
     DetailedComponent,
     BookCardComponent,
     BooksComponent,
-    ErrorComponent
+    ErrorComponent,
+    CartCalculationComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+  imports: [BrowserModule, AppRoutingModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
