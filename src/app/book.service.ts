@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { listOfBooks } from '../app/books-mock';
+import { Observable, of } from 'rxjs';
 
 export interface Book {
   title: string;
@@ -22,6 +23,21 @@ export class BookService {
 
   getBookByISBN13(isbn13: string): Book {
     return listOfBooks[listOfBooks.findIndex((book) => book.isbn13 === isbn13)];
+  }
+
+  searchBook(value: string): Observable<Book[]> {
+    if (!value.trim()) {
+      return of([]);
+    } else {
+      const books = this.getBooks();
+      let searchResult: Book[] = [];
+      books.forEach((book) => {
+        if (book.title.toLowerCase().includes(value.toLowerCase())) {
+          searchResult.push(book);
+        }
+      });
+      return of(searchResult);
+    }
   }
 
   parseLocalStorage(books: Book[]): Book[] {
