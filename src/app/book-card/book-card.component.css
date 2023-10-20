@@ -5,6 +5,10 @@
   /*display: grid;*/
 }
 
+.book__link {
+  cursor: pointer;
+}
+
 .book__title {
   font-weight: 400;
 }
@@ -20,5 +24,5 @@
 }
 
 .book__btn_noactivated {
-  pointer-events: all;
+  pointer-events: auto;
 }

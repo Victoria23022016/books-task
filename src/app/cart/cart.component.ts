@@ -15,7 +15,9 @@ export class CartComponent implements OnInit {
     this.books = this._bookService.parseLocalStorage(this.books);
   }
 
-  removeFromCart(book: Book): void {
+  plusOne(book: Book) {}
+
+  minusOne(book: Book): void {
     this._bookService.removeFromLocalStorage(book.isbn13);
     this.books = this._bookService.parseLocalStorage(this.books);
   }
