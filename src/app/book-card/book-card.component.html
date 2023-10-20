@@ -1,10 +1,10 @@
 <tr class="book">
-  <a [routerLink]="['/detailed', +book.isbn13]">
+  <div class="book__link" [routerLink]="['/detailed', +book.isbn13]">
     <td><img class="book__img" src="{{ book.image }}" /></td>
     <td class="book__title">{{ book.title }}</td>
     <td>{{ book.price }}</td>
-    <td>Description</td>
-  </a>
+    <td>{{ book.subtitle != "" ? book.subtitle : "-" }}</td>
+  </div>
   <td>
     <button
       (click)="addToCart(book)"

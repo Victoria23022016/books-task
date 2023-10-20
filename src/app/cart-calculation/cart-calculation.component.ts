@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Book } from '../book.service';
 
 @Component({
@@ -6,12 +6,12 @@ import { Book } from '../book.service';
   templateUrl: './cart-calculation.component.html',
   styleUrls: ['./cart-calculation.component.css'],
 })
-export class CartCalculationComponent implements OnInit {
+export class CartCalculationComponent {
   @Input() books: Book[];
 
   totalCost: number;
 
-  ngOnInit(): void {
+  ngDoCheck(): void {
     this.totalCost = this.calcTotalCost();
   }
 
