@@ -1,24 +1,37 @@
-import { Component, OnInit } from '@angular/core';
-import { Book, BookService } from '../book.service';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Book, BookService, CartItem } from '../book.service';
 
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CartComponent implements OnInit {
-  books: Book[] = [];
+  cartItems: CartItem[];
+  isEmpty: boolean;
 
   constructor(private readonly _bookService: BookService) {}
 
   ngOnInit(): void {
-    this.books = this._bookService.parseLocalStorage(this.books);
+    this.cartItems = this._bookService.cartItems;
   }
 
-  plusOne(book: Book) {}
+  ngDoCheck() {
+    this.isEmpty = this._bookService.checkCartForEmpty() ? true : false;
+  }
 
-  minusOne(book: Book): void {
-    this._bookService.removeFromLocalStorage(book.isbn13);
-    this.books = this._bookService.parseLocalStorage(this.books);
+  plusBook(book: Book): void {
+    this._bookService.addBook(book);
+  }
+
+  minusBook(book: Book): void {
+    if (!(this.isEmpty = this._bookService.checkForNullItem(book))) {
+      this._bookService.removeBook(book);
+    }
+  }
+
+  deleteBook(book: Book) {
+    this._bookService.deleteBook(book);
   }
 }

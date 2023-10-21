@@ -1,20 +1,24 @@
 <h1>Cart:</h1>
 <table>
-  <tbody *ngFor="let book of books">
+  <tbody *ngFor="let item of cartItems">
     <tr class="cart">
-      <a [routerLink]="['/detailed', +book.isbn13]">
-        <td><img class="cart__img" src="{{ book.image }}" /></td>
-        <td>{{ book.title }}</td>
-        <td>{{ book.price }}</td>
-        <td>Description</td>
+      <a [routerLink]="['/detailed', +item.book.isbn13]">
+        <td><img class="cart__img" src="{{ item.book.image }}" /></td>
+        <td>{{ item.book.title }}</td>
+        <td>{{ item.book.price }}</td>
       </a>
       <td>
-        <button (click)="plusOne(book)">+</button>
-        <span>Number og copies in cart:</span>
-        <button (click)="minusOne(book)">-</button>
+        <button (click)="plusBook(item.book)">+</button>
+        <span>Number of copies in cart:{{ item.count }}</span>
+        <button (click)="minusBook(item.book)">-</button>
+        <button (click)="deleteBook(item.book)">Delete</button>
       </td>
     </tr>
   </tbody>
 </table>
-<app-cart-calculation [books]="books"></app-cart-calculation>
-<!--калькуляция показана только если корзина НЕ пустая, сделать проверку-->
+<ng-container *ngIf="!isEmpty">
+  <app-cart-calculation></app-cart-calculation>
+</ng-container>
+<!--переделать на ng-container-->
+
+<!--калькуляция показана только если корзина НЕ пустая, сделать проверку ПЕРЕДАЕМ В ДОЧ.КОМПОНЕНТ ISEMPTY-->

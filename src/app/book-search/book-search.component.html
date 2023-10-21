@@ -8,7 +8,7 @@
       (input)="search(searchBox.value)"
     />
   </div>
-  <div *ngIf="searchBox.value"><h1>We found:</h1></div>
+  <ng-container *ngIf="searchBox.value"><h1>We found:</h1></ng-container>
   <div class="card" *ngFor="let book of books$ | async">
     <app-book-card [book]="book"></app-book-card>
   </div>

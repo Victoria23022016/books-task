@@ -20,7 +20,6 @@
 
 .book__btn_activated {
   pointer-events: none;
-  background: red;
 }
 
 .book__btn_noactivated {

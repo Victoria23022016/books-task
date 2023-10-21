@@ -6,17 +6,9 @@
     <h2 class="detailed__title">{{ book.title }}</h2>
     <p></p>
     <p>{{ book.price }}</p>
-    <button
-      (click)="addToCart(book)"
-      [ngClass]="{
-        detailed__btn_activated: inCart,
-        detailed__btn_notactivated: !inCart
-      }"
-    >
-      Add to cart
-    </button>
-    <div *ngIf="inCart">
-      <p>Book has been added to the cart</p>
-    </div>
+    <button (click)="addToCart(book)">Add to cart</button>
+    <ng-container *ngIf="inCart">
+      <p>Book has been added to the cart for {{ bookCount }} times</p>
+    </ng-container>
   </div>
 </div>

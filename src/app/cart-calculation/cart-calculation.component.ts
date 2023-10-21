@@ -1,27 +1,26 @@
-import { Component, Input } from '@angular/core';
-import { Book } from '../book.service';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+} from '@angular/core';
+import { BookService } from '../book.service';
 
 @Component({
   selector: 'app-cart-calculation',
   templateUrl: './cart-calculation.component.html',
   styleUrls: ['./cart-calculation.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CartCalculationComponent {
-  @Input() books: Book[];
-
   totalCost: number;
 
-  ngDoCheck(): void {
-    this.totalCost = this.calcTotalCost();
-  }
+  constructor(
+    private readonly _bookService: BookService,
+    private readonly _cdr: ChangeDetectorRef
+  ) {}
 
-  calcTotalCost(): number {
-    //подумать, может вынести в сервис этот метод?
-    return this.books
-      .map((el) => el.price)
-      .map((el) => +el.slice(1, el.length))
-      .reduce((sum, number) => {
-        return sum + number;
-      }, 0);
+  ngDoCheck(): void {
+    this.totalCost = this._bookService.calcTotalCost();
+    this._cdr.detectChanges();
   }
 }

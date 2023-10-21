@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  DoCheck,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Book, BookService } from '../book.service';
 
@@ -6,9 +11,11 @@ import { Book, BookService } from '../book.service';
   selector: 'app-detailed',
   templateUrl: './detailed-book.component.html',
   styleUrls: ['./detailed-book.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DetailedComponent implements OnInit {
   book: Book;
+  bookCount: number;
   inCart = false;
 
   constructor(
@@ -21,15 +28,21 @@ export class DetailedComponent implements OnInit {
       const isbn13 = params['id'];
       if (isbn13) {
         this.book = this._bookServise.getBookByISBN13(isbn13);
-        this.inCart = this._bookServise.checkLocalStorage(isbn13)
-          ? true
-          : false;
+        if (this._bookServise.checkItem(this.book)) {
+          this.inCart = true;
+          this.updateBookCount();
+        }
       }
     });
   }
 
   addToCart(book: Book): void {
-    this._bookServise.addToLocalStorage(book);
+    this._bookServise.addBook(book);
     this.inCart = true;
-  } //добавление inCart = true!!!
+    this.updateBookCount();
+  }
+
+  updateBookCount() {
+    this.bookCount = this._bookServise.checkCount(this.book);
+  }
 }
