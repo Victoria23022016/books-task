@@ -14,6 +14,7 @@ import { Book, BookService } from '../book.service';
 })
 export class BookCardComponent implements OnInit {
   @Input() book: Book;
+
   inCart = false;
   bookCount: number;
 
