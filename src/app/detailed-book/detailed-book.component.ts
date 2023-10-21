@@ -1,9 +1,4 @@
-import {
-  Component,
-  OnInit,
-  DoCheck,
-  ChangeDetectionStrategy,
-} from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Book, BookService } from '../book.service';
 

@@ -1,17 +1,21 @@
-<h1>Cart:</h1>
-<table>
+<h1 class="cart__title">Cart:</h1>
+<table class="cart">
   <tbody *ngFor="let item of cartItems">
-    <tr class="cart">
-      <a [routerLink]="['/detailed', +item.book.isbn13]">
-        <td><img class="cart__img" src="{{ item.book.image }}" /></td>
-        <td>{{ item.book.title }}</td>
-        <td>{{ item.book.price }}</td>
-      </a>
-      <td>
-        <button (click)="plusBook(item.book)">+</button>
-        <span>Number of copies in cart:{{ item.count }}</span>
-        <button (click)="minusBook(item.book)">-</button>
-        <button (click)="deleteBook(item.book)">Delete</button>
+    <tr class="cart__tr">
+      <div class="cart__link" [routerLink]="['/detailed', +item.book.isbn13]">
+        <td>
+          <img class="cart__img" src="{{ item.book.image }}" />
+        </td>
+        <td class="cart__td_title">{{ item.book.title }}</td>
+        <td class="cart__td_price">{{ item.book.price }}</td>
+      </div>
+      <td class="cart__td_count">
+        <button class="cart__btn" (click)="plusBook(item.book)">+</button>
+        <span>{{ item.count }}</span>
+        <button class="cart__btn" (click)="minusBook(item.book)">-</button>
+        <button class="cart__btn" (click)="deleteBook(item.book)">
+          Delete
+        </button>
       </td>
     </tr>
   </tbody>

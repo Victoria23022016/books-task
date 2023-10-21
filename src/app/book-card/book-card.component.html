@@ -3,12 +3,16 @@
     <td><img class="book__img" src="{{ book.image }}" /></td>
     <td class="book__title">{{ book.title }}</td>
     <td>{{ book.price }}</td>
-    <td>{{ book.subtitle != "" ? book.subtitle : "-" }}</td>
+    <td class="book__subtitle">
+      {{ book.subtitle != "" ? book.subtitle : "-" }}
+    </td>
   </div>
-  <td>
-    <button (click)="addToCart(book)">Add to cart</button>
+  <td class="book__adding">
+    <button class="book__btn" (click)="addToCart(book)">Add to cart</button>
     <ng-container *ngIf="inCart">
-      <p>Book has been added to the cart for {{ bookCount }} times</p>
+      <p class="book__substring">
+        Book has been added to the cart for {{ bookCount }} times
+      </p>
     </ng-container>
   </td>
 </tr>

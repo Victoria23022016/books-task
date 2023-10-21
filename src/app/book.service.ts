@@ -21,8 +21,7 @@ export interface CartItem {
 })
 export class BookService {
   cartItems: CartItem[] = [];
-
-  constructor() {}
+  isAuth: boolean = false;
 
   getBooks(): Book[] {
     return listOfBooks;
@@ -108,5 +107,17 @@ export class BookService {
         return sum + number;
       }, 0);
     return totalCost;
+  }
+
+  login() {
+    this.isAuth = true;
+  }
+
+  logout() {
+    this.isAuth = false;
+  }
+
+  isAuthenticated(): boolean {
+    return this.isAuth;
   }
 }

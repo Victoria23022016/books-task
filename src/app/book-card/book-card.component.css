@@ -1,27 +1,49 @@
 .book {
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-family: Georgia, "Times New Roman", Times, serif;
   font-weight: 200;
-  /*display: grid;*/
+  width: 1000px;
+  display: flex;
+  justify-content: row;
+  align-items: center;
+  text-align: center;
 }
 
 .book__link {
-  cursor: pointer;
+  display: flex;
+  justify-content: row;
+  align-items: center;
+  gap: 10px;
 }
 
 .book__title {
   font-weight: 400;
+  width: 300px;
+}
+
+.book__subtitle {
+  width: 180px;
+}
+
+.book__price {
+  width: 150px;
 }
 
 .book__img {
-  width: 100px;
-  height: 100px;
+  width: 200px;
+  height: 200px;
 }
 
-.book__btn_activated {
-  pointer-events: none;
+.book__btn {
+  border-radius: 5px;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 15px;
+  cursor: pointer;
 }
 
-.book__btn_noactivated {
-  pointer-events: auto;
+.book__substring {
+  color: gray;
+  font-style: italic;
+  font-size: 12px;
+  position: absolute;
+  text-align: center;
 }

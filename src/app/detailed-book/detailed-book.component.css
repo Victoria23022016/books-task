@@ -10,6 +10,7 @@
 .detailed__info {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 .detailed__img {
@@ -18,4 +19,20 @@
 }
 
 .detailed__title {
+  font-weight: 400;
+  width: 300px;
+  text-align: center;
+}
+
+.detailed__btn {
+  border-radius: 5px;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.detailed__substring {
+  color: gray;
+  font-style: italic;
+  font-size: 15px;
 }
