@@ -1,0 +1,38 @@
+.detailed {
+  padding: 1rem;
+  border: #ccc 1px dotted;
+  margin: 0.7rem 0;
+  display: flex;
+  flex-direction: row;
+  color: black;
+}
+
+.detailed__info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.detailed__img {
+  width: 500px;
+  height: 550px;
+}
+
+.detailed__title {
+  font-weight: 400;
+  width: 300px;
+  text-align: center;
+}
+
+.detailed__btn {
+  border-radius: 5px;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.detailed__substring {
+  color: gray;
+  font-style: italic;
+  font-size: 15px;
+}

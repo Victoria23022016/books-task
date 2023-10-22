@@ -1,0 +1,18 @@
+<tr class="book">
+  <div class="book__link" [routerLink]="['/detailed', +book.isbn13]">
+    <td><img class="book__img" src="{{ book.image }}" /></td>
+    <td class="book__title">{{ book.title }}</td>
+    <td>{{ book.price }}</td>
+    <td class="book__subtitle">
+      {{ book.subtitle != "" ? book.subtitle : "-" }}
+    </td>
+  </div>
+  <td class="book__adding">
+    <button class="book__btn" (click)="addToCart(book)">Add to cart</button>
+    <ng-container *ngIf="inCart">
+      <p class="book__substring">
+        Book has been added to the cart for {{ bookCount }} times
+      </p>
+    </ng-container>
+  </td>
+</tr>

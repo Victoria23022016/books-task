@@ -1,0 +1,18 @@
+<nav class="main__navbar">
+  <h1 class="main__title">IT Book store</h1>
+  <div class="main__holder">
+    <button
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      class="main__btn"
+    >
+      <div [routerLink]="['/']">Main page</div>
+    </button>
+    <button routerLinkActive="active" class="main__btn">
+      <div [routerLink]="['/cart']">Cart</div>
+    </button>
+  </div>
+</nav>
+<div class="main__container">
+  <router-outlet></router-outlet>
+</div>

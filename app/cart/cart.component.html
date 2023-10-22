@@ -1,0 +1,28 @@
+<h1 class="cart__title">Cart:</h1>
+<table class="cart">
+  <tbody *ngFor="let item of cartItems">
+    <tr class="cart__tr">
+      <div class="cart__link" [routerLink]="['/detailed', +item.book.isbn13]">
+        <td>
+          <img class="cart__img" src="{{ item.book.image }}" />
+        </td>
+        <td class="cart__td_title">{{ item.book.title }}</td>
+        <td class="cart__td_price">{{ item.book.price }}</td>
+      </div>
+      <td class="cart__td_count">
+        <button class="cart__btn" (click)="plusBook(item.book)">+</button>
+        <span>{{ item.count }}</span>
+        <button class="cart__btn" (click)="minusBook(item.book)">-</button>
+        <button class="cart__btn" (click)="deleteBook(item.book)">
+          Delete
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<ng-container *ngIf="!isEmpty">
+  <app-cart-calculation></app-cart-calculation>
+</ng-container>
+<!--переделать на ng-container-->
+
+<!--калькуляция показана только если корзина НЕ пустая, сделать проверку ПЕРЕДАЕМ В ДОЧ.КОМПОНЕНТ ISEMPTY-->

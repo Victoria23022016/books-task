@@ -1,0 +1,11 @@
+.books__table {
+  padding: 10px;
+  margin-top: 10px;
+  width: 1000px;
+}
+
+.books__title {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-weight: 400;
+  font-size: 30px;
+}

@@ -1,0 +1,16 @@
+<div class="detailed">
+  <p>
+    <img class="detailed__img" src="{{ book.image }}" />
+  </p>
+  <div class="detailed__info">
+    <h2 class="detailed__title">{{ book.title }}</h2>
+    <p>{{ book.subtitle }}</p>
+    <p>{{ book.price }}</p>
+    <button class="detailed__btn" (click)="addToCart(book)">Add to cart</button>
+    <ng-container *ngIf="inCart">
+      <p class="detailed__substring">
+        Book has been added to the cart for {{ bookCount }} times
+      </p>
+    </ng-container>
+  </div>
+</div>

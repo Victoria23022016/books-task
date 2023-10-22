@@ -1,0 +1,36 @@
+.main__navbar {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  background-color: #1976d2;
+  color: black;
+  font-weight: 400;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  justify-content: flex-end;
+  padding: 20px;
+  margin: 0 auto;
+}
+
+.main__title {
+  margin: auto;
+  font-size: 30px;
+  font-weight: 400;
+}
+
+.main__holder {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.main__btn {
+  border-radius: 5px;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.main__container {
+  max-width: 1000px;
+  margin: 0 auto;
+}

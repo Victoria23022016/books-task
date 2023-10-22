@@ -1,0 +1,24 @@
+.book-search {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-weight: 200;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding-top: 10px;
+}
+
+.book-search__control {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.book-search__title {
+  font-weight: 400;
+  font-size: 30px;
+}
+
+.book-search__input {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 20px;
+  height: 40px;
+}
