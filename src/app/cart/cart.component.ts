@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  DoCheck,
+  OnInit,
+} from '@angular/core';
 import { Book, BookService, CartItem } from '../book.service';
 
 @Component({
@@ -7,9 +12,10 @@ import { Book, BookService, CartItem } from '../book.service';
   styleUrls: ['./cart.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CartComponent implements OnInit {
+export class CartComponent implements OnInit, DoCheck {
   cartItems: CartItem[];
   isEmpty: boolean;
+  totalCost: number;
 
   constructor(private readonly _bookService: BookService) {}
 
@@ -19,19 +25,20 @@ export class CartComponent implements OnInit {
 
   ngDoCheck() {
     this.isEmpty = this._bookService.checkCartForEmpty() ? true : false;
+    this.totalCost = this._bookService.calcTotalCost();
   }
 
   plusBook(book: Book): void {
-    this._bookService.addBook(book);
+    this._bookService.addToCart(book);
   }
 
-  minusBook(book: Book): void {
-    if (!(this.isEmpty = this._bookService.checkForNullItem(book))) {
-      this._bookService.removeBook(book);
+  minusBook(isbn13: string): void {
+    if (!(this.isEmpty = this._bookService.checkForNullItem(isbn13))) {
+      this._bookService.decreaseBook(isbn13);
     }
   }
 
-  deleteBook(book: Book) {
-    this._bookService.deleteBook(book);
+  deleteBook(isbn13: string): void {
+    this._bookService.deleteBook(isbn13);
   }
 }

@@ -27,8 +27,8 @@ export class BookService {
     return listOfBooks;
   }
 
-  getBookByISBN13(isbn13: string): Book {
-    return listOfBooks[listOfBooks.findIndex((book) => book.isbn13 === isbn13)];
+  getBookByISBN13(isbn13: string): Book | undefined {
+    return listOfBooks.find((book) => book.isbn13 === isbn13);
   }
 
   searchBook(value: string): Observable<Book[]> {
@@ -49,7 +49,7 @@ export class BookService {
     }
   }
 
-  addBook(book: Book): void {
+  addToCart(book: Book): void {
     if (this.cartItems.length === 0) {
       this.cartItems.push({ book: book, count: 1 });
     } else {
@@ -59,45 +59,46 @@ export class BookService {
       if (filtratedItems.length === 0) {
         this.cartItems.push({ book: book, count: 1 });
       } else {
-        const indexOfItem = this.findIndexOfItem(book);
+        const indexOfItem = this.findIndexOfItem(book.isbn13);
         this.cartItems[indexOfItem].count += 1;
       }
     }
   }
 
-  removeBook(book: Book): void {
-    const indexOfItem = this.findIndexOfItem(book);
+  decreaseBook(isbn13: string): void {
+    const indexOfItem = this.findIndexOfItem(isbn13);
     this.cartItems[indexOfItem].count -= 1;
-    if (this.checkForNullItem(book)) {
-      this.deleteBook(book);
+    if (this.checkForNullItem(isbn13)) {
+      //
+      this.deleteBook(isbn13);
     }
   }
 
-  deleteBook(book: Book): void {
-    const indexOfItem = this.findIndexOfItem(book);
+  deleteBook(isbn13: string): void {
+    const indexOfItem = this.findIndexOfItem(isbn13);
     this.cartItems.splice(indexOfItem, 1);
   }
 
-  checkForNullItem(book: Book): boolean {
-    const indexOfItem = this.findIndexOfItem(book);
+  checkForNullItem(isbn13: string): boolean {
+    const indexOfItem = this.findIndexOfItem(isbn13);
     return this.cartItems[indexOfItem].count === 0 ? true : false;
   }
 
   checkCartForEmpty(): boolean {
     return this.cartItems.length === 0 ? true : false;
-  } // для использования в калькуляции
+  }
 
   checkItem(book: Book): boolean {
     return this.cartItems.find((item) => item.book === book) ? true : false;
   }
 
-  checkCount(book: Book): number {
-    const indexOfItem = this.findIndexOfItem(book);
+  getCount(book: Book): number {
+    const indexOfItem = this.findIndexOfItem(book.isbn13);
     return this.cartItems[indexOfItem].count;
   }
 
-  findIndexOfItem(book: Book): number {
-    return this.cartItems.findIndex((item) => item.book === book);
+  private findIndexOfItem(isbn13: string): number {
+    return this.cartItems.findIndex((item) => item.book.isbn13 === isbn13);
   }
 
   calcTotalCost(): number {

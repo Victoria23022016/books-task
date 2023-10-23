@@ -24,7 +24,6 @@ import { BookSearchComponent } from './book-search/book-search.component';
     BookSearchComponent,
   ],
   imports: [BrowserModule, AppRoutingModule],
-  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
