@@ -21,7 +21,6 @@ export class BookCardComponent implements OnInit {
   constructor(private readonly _bookService: BookService) {}
 
   ngOnInit(): void {
-    this.book = this._bookService.getBookByISBN13(this.book.isbn13);
     if (this._bookService.checkItem(this.book)) {
       this.inCart = true;
       this.updateBookCount();
@@ -29,12 +28,12 @@ export class BookCardComponent implements OnInit {
   }
 
   addToCart(book: Book): void {
-    this._bookService.addBook(book);
+    this._bookService.addToCart(book);
     this.inCart = true;
     this.updateBookCount();
   }
 
   updateBookCount() {
-    this.bookCount = this._bookService.checkCount(this.book);
+    this.bookCount = this._bookService.getCount(this.book);
   }
 }

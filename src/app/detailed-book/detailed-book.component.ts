@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Book, BookService } from '../book.service';
+import { listOfBooks } from '../books-mock';
 
 @Component({
   selector: 'app-detailed',
@@ -22,7 +23,11 @@ export class DetailedComponent implements OnInit {
     this._route.params.subscribe((params) => {
       const isbn13 = params['id'];
       if (isbn13) {
-        this.book = this._bookServise.getBookByISBN13(isbn13);
+        const checkBook = this._bookServise.getBookByISBN13(isbn13);
+        if (checkBook != undefined) {
+          this.book = checkBook;
+        }
+
         if (this._bookServise.checkItem(this.book)) {
           this.inCart = true;
           this.updateBookCount();
@@ -32,12 +37,12 @@ export class DetailedComponent implements OnInit {
   }
 
   addToCart(book: Book): void {
-    this._bookServise.addBook(book);
+    this._bookServise.addToCart(book);
     this.inCart = true;
     this.updateBookCount();
   }
 
   updateBookCount() {
-    this.bookCount = this._bookServise.checkCount(this.book);
+    this.bookCount = this._bookServise.getCount(this.book);
   }
 }

@@ -12,8 +12,10 @@
       <td class="cart__td_count">
         <button class="cart__btn" (click)="plusBook(item.book)">+</button>
         <span>{{ item.count }}</span>
-        <button class="cart__btn" (click)="minusBook(item.book)">-</button>
-        <button class="cart__btn" (click)="deleteBook(item.book)">
+        <button class="cart__btn" (click)="minusBook(item.book.isbn13)">
+          -
+        </button>
+        <button class="cart__btn" (click)="deleteBook(item.book.isbn13)">
           Delete
         </button>
       </td>
@@ -21,8 +23,8 @@
   </tbody>
 </table>
 <ng-container *ngIf="!isEmpty">
-  <app-cart-calculation></app-cart-calculation>
+  <div class="cart-calculation__container">
+    <h2 class="cart__calculation">The total cost is :</h2>
+    <span class="cart__calculation">{{ totalCost | currency }}</span>
+  </div>
 </ng-container>
-<!--переделать на ng-container-->
-
-<!--калькуляция показана только если корзина НЕ пустая, сделать проверку ПЕРЕДАЕМ В ДОЧ.КОМПОНЕНТ ISEMPTY-->

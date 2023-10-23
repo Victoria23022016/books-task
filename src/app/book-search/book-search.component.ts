@@ -16,7 +16,7 @@ import { Book } from '../book.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BookSearchComponent implements OnInit {
-  _searchTerms = new Subject<string>();
+  private _searchTerms = new Subject<string>();
   books$: Observable<Book[]>;
 
   constructor(private readonly _bookService: BookService) {}
