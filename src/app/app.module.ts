@@ -8,7 +8,6 @@ import { DetailedComponent } from './detailed-book/detailed-book.component';
 import { BookCardComponent } from './book-card/book-card.component';
 import { BooksComponent } from './books/books.component';
 import { ErrorComponent } from './error/error.component';
-import { CartCalculationComponent } from './cart-calculation/cart-calculation.component';
 import { BookSearchComponent } from './book-search/book-search.component';
 
 @NgModule({
@@ -20,7 +19,6 @@ import { BookSearchComponent } from './book-search/book-search.component';
     BookCardComponent,
     BooksComponent,
     ErrorComponent,
-    CartCalculationComponent,
     BookSearchComponent,
   ],
   imports: [BrowserModule, AppRoutingModule],
