@@ -1,7 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Book, BookService } from '../book.service';
-import { listOfBooks } from '../books-mock';
 
 @Component({
   selector: 'app-detailed',
@@ -42,7 +41,7 @@ export class DetailedComponent implements OnInit {
     this.updateBookCount();
   }
 
-  updateBookCount() {
+  updateBookCount(): void {
     this.bookCount = this._bookServise.getCount(this.book);
   }
 }

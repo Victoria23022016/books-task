@@ -4,11 +4,12 @@ import { CartComponent } from './cart/cart.component';
 import { MainPageComponent } from './main-page/main-page.component';
 import { ErrorComponent } from './error/error.component';
 import { DetailedComponent } from './detailed-book/detailed-book.component';
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
   { path: '', component: MainPageComponent },
   { path: 'detailed/:id', component: DetailedComponent },
-  { path: 'cart', component: CartComponent },
+  { path: 'cart', component: CartComponent, canActivate: [AuthGuard] },
   { path: 'error', component: ErrorComponent },
   { path: '**', redirectTo: '/error' },
 ];
