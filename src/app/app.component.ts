@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { BookService } from './book.service';
+import { GuardService } from './guard.service';
 
 @Component({
   selector: 'app-root',
@@ -7,5 +7,13 @@ import { BookService } from './book.service';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  constructor(bookService: BookService) {}
+  constructor(private readonly _guardService: GuardService) {}
+
+  login(): void {
+    this._guardService.login();
+  }
+
+  logout(): void {
+    this._guardService.logout();
+  }
 }
