@@ -4,7 +4,8 @@ import {
   DoCheck,
   OnInit,
 } from '@angular/core';
-import { Book, BookService, CartItem } from '../book.service';
+import { Book } from '../../services/book.service';
+import { CartItem, CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-cart',
@@ -17,28 +18,28 @@ export class CartComponent implements OnInit, DoCheck {
   isEmpty: boolean;
   totalCost: number;
 
-  constructor(private readonly _bookService: BookService) {}
+  constructor(private readonly _cartService: CartService) {}
 
   ngOnInit(): void {
-    this.cartItems = this._bookService.cartItems;
+    this.cartItems = this._cartService.cartItems;
   }
 
   ngDoCheck() {
-    this.isEmpty = this._bookService.checkCartForEmpty() ? true : false;
-    this.totalCost = this._bookService.calcTotalCost();
+    this.isEmpty = this._cartService.checkCartForEmpty() ? true : false;
+    this.totalCost = this._cartService.calcTotalCost();
   }
 
   plusBook(book: Book): void {
-    this._bookService.addToCart(book);
+    this._cartService.addToCart(book);
   }
 
   minusBook(isbn13: string): void {
-    if (!(this.isEmpty = this._bookService.checkForNullItem(isbn13))) {
-      this._bookService.decreaseBook(isbn13);
+    if (!(this.isEmpty = this._cartService.checkForNullItem(isbn13))) {
+      this._cartService.decreaseBook(isbn13);
     }
   }
 
   deleteBook(isbn13: string): void {
-    this._bookService.deleteBook(isbn13);
+    this._cartService.deleteBook(isbn13);
   }
 }

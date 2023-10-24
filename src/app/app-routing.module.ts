@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CartComponent } from './cart/cart.component';
-import { MainPageComponent } from './main-page/main-page.component';
-import { ErrorComponent } from './error/error.component';
-import { DetailedComponent } from './detailed-book/detailed-book.component';
+import { CartComponent } from './components/cart/cart.component';
+import { MainPageComponent } from './components/main-page/main-page.component';
+import { ErrorComponent } from './components/error/error.component';
+import { DetailedComponent } from './components/detailed-book/detailed-book.component';
 import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [

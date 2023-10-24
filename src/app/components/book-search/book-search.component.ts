@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { BookService } from '../book.service';
+import { BookService } from '../../services/book.service';
 import {
   Observable,
   Subject,
@@ -7,7 +7,7 @@ import {
   distinctUntilChanged,
   mergeMap,
 } from 'rxjs';
-import { Book } from '../book.service';
+import { Book } from '../../services/book.service';
 
 @Component({
   selector: 'app-book-search',

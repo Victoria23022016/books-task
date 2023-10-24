@@ -4,7 +4,8 @@ import {
   Input,
   OnInit,
 } from '@angular/core';
-import { Book, BookService } from '../book.service';
+import { Book } from '../../services/book.service';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-book-card',
@@ -18,22 +19,22 @@ export class BookCardComponent implements OnInit {
   inCart = false;
   bookCount: number;
 
-  constructor(private readonly _bookService: BookService) {}
+  constructor(private readonly _cartService: CartService) {}
 
   ngOnInit(): void {
-    if (this._bookService.checkItem(this.book)) {
+    if (this._cartService.checkItem(this.book)) {
       this.inCart = true;
       this.updateBookCount();
     }
   }
 
   addToCart(book: Book): void {
-    this._bookService.addToCart(book);
+    this._cartService.addToCart(book);
     this.inCart = true;
     this.updateBookCount();
   }
 
   updateBookCount() {
-    this.bookCount = this._bookService.getCount(this.book);
+    this.bookCount = this._cartService.getCount(this.book);
   }
 }

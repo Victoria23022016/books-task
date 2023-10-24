@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { Book, BookService } from '../book.service';
+import { Book, BookService } from '../../services/book.service';
 
 @Component({
   selector: 'app-books',
