@@ -1,4 +1,4 @@
-import { Book } from './book.service';
+import { Book } from './services/book.service';
 
 export const listOfBooks: Book[] = [
   {

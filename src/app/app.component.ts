@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { GuardService } from './guard.service';
+import { GuardService } from './services/guard.service';
 
 @Component({
   selector: 'app-root',

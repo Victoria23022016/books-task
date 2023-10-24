@@ -6,6 +6,7 @@ export class GuardService {
 
   login(): void {
     this.isAuth = true;
+    alert('Now you are logged in!');
   }
 
   logout(): void {

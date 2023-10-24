@@ -6,7 +6,7 @@ import {
   RouterStateSnapshot,
 } from '@angular/router';
 import { Observable } from 'rxjs';
-import { GuardService } from './guard.service';
+import { GuardService } from './services/guard.service';
 
 @Injectable({ providedIn: 'root' })
 export class AuthGuard implements CanActivate {

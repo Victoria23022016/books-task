@@ -13,6 +13,7 @@
   justify-content: row;
   align-items: center;
   gap: 10px;
+  cursor: pointer;
 }
 
 .book__title {

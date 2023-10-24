@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Book, BookService } from '../book.service';
+import { Book, BookService } from '../../services/book.service';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-detailed',
@@ -15,7 +16,8 @@ export class DetailedComponent implements OnInit {
 
   constructor(
     private readonly _route: ActivatedRoute,
-    private readonly _bookServise: BookService
+    private readonly _bookServise: BookService,
+    private readonly _cartService: CartService
   ) {}
 
   ngOnInit(): void {
@@ -27,7 +29,7 @@ export class DetailedComponent implements OnInit {
           this.book = checkBook;
         }
 
-        if (this._bookServise.checkItem(this.book)) {
+        if (this._cartService.checkItem(this.book)) {
           this.inCart = true;
           this.updateBookCount();
         }
@@ -36,12 +38,12 @@ export class DetailedComponent implements OnInit {
   }
 
   addToCart(book: Book): void {
-    this._bookServise.addToCart(book);
+    this._cartService.addToCart(book);
     this.inCart = true;
     this.updateBookCount();
   }
 
   updateBookCount(): void {
-    this.bookCount = this._bookServise.getCount(this.book);
+    this.bookCount = this._cartService.getCount(this.book);
   }
 }

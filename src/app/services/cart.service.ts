@@ -1,15 +1,5 @@
 import { Injectable } from '@angular/core';
-import { listOfBooks } from '../app/books-mock';
-import { Observable, of } from 'rxjs';
-
-export interface Book {
-  title: string;
-  subtitle: string;
-  isbn13: string;
-  price: string;
-  image: string;
-  url: string;
-}
+import { Book } from './book.service';
 
 export interface CartItem {
   book: Book;
@@ -19,34 +9,8 @@ export interface CartItem {
 @Injectable({
   providedIn: 'root',
 })
-export class BookService {
+export class CartService {
   cartItems: CartItem[] = [];
-
-  getBooks(): Book[] {
-    return listOfBooks;
-  }
-
-  getBookByISBN13(isbn13: string): Book | undefined {
-    return listOfBooks.find((book) => book.isbn13 === isbn13);
-  }
-
-  searchBook(value: string): Observable<Book[]> {
-    if (!value.trim()) {
-      return of([]);
-    } else {
-      const books = this.getBooks();
-      let searchResult: Book[] = [];
-      books.forEach((book) => {
-        if (
-          book.title.toLowerCase().includes(value.toLowerCase()) ||
-          book.subtitle.toLowerCase().includes(value.toLocaleLowerCase())
-        ) {
-          searchResult.push(book);
-        }
-      });
-      return of(searchResult);
-    }
-  }
 
   addToCart(book: Book): void {
     if (this.cartItems.length === 0) {
@@ -68,7 +32,6 @@ export class BookService {
     const indexOfItem = this.findIndexOfItem(isbn13);
     this.cartItems[indexOfItem].count -= 1;
     if (this.checkForNullItem(isbn13)) {
-      //
       this.deleteBook(isbn13);
     }
   }
@@ -96,10 +59,6 @@ export class BookService {
     return this.cartItems[indexOfItem].count;
   }
 
-  private findIndexOfItem(isbn13: string): number {
-    return this.cartItems.findIndex((item) => item.book.isbn13 === isbn13);
-  }
-
   calcTotalCost(): number {
     let totalCost = this.cartItems
       .map((el) => +el.book.price.slice(1, el.book.price.length) * el.count)
@@ -107,5 +66,9 @@ export class BookService {
         return sum + number;
       }, 0);
     return totalCost;
+  }
+
+  private findIndexOfItem(isbn13: string): number {
+    return this.cartItems.findIndex((item) => item.book.isbn13 === isbn13);
   }
 }
