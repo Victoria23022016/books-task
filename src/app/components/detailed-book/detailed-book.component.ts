@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Book, BookService } from '../../services/book.service';
-import { CartService } from 'src/app/services/cart.service';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-detailed',
