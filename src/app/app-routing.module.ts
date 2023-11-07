@@ -9,12 +9,12 @@ import { RegistryComponent } from './registry/registry.component';
 import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
-  { path: '', component: MainPageComponent },
+  { path: '', component: LoginComponent },
+  { path: 'main', component: MainPageComponent, canActivate: [AuthGuard] },
   { path: 'detailed/:id', component: DetailedComponent },
   { path: 'cart', component: CartComponent, canActivate: [AuthGuard] },
   { path: 'error', component: ErrorComponent },
   { path: 'registry', component: RegistryComponent },
-  { path: 'login', component: LoginComponent },
   { path: '**', redirectTo: '/error' },
 ];
 

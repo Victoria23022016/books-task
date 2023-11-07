@@ -26,7 +26,9 @@ export class RegistryComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = new FormGroup({
-      email: new FormControl('', [Validators.required, this.validatorForEmail]),
+      email: new FormControl('', [
+        Validators.required /*this.validatorForEmail*/,
+      ]),
       password: new FormControl('', [Validators.required]),
     });
   }
@@ -42,6 +44,7 @@ export class RegistryComponent implements OnInit {
   submit(): void {
     this.formData = { ...this.form.value };
     this._authService.addToLocalStorage(this.formData);
-    this._router.navigate(['/']);
+    this._authService.login();
+    this._router.navigate(['/main']);
   }
 }

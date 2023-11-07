@@ -29,7 +29,6 @@ export class LoginComponent {
 
   submit(): void {
     this.formData = { ...this.form.value };
-
     if (this._authService.checkUserInLocalStorage(this.formData)) {
       this._authService.login();
       this.logged = true;
@@ -37,5 +36,6 @@ export class LoginComponent {
       this.incorrect = false;
     }
     this.form.reset();
+    this._router.navigate(['/main']);
   }
 }
