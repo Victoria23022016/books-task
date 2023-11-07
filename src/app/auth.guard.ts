@@ -2,29 +2,27 @@ import { Injectable } from '@angular/core';
 import {
   ActivatedRouteSnapshot,
   CanActivate,
-  Router,
   RouterStateSnapshot,
 } from '@angular/router';
-import { Observable } from 'rxjs';
-import { GuardService } from './services/guard.service';
+import { AuthService } from './services/auth.service';
 
 @Injectable({ providedIn: 'root' })
 export class AuthGuard implements CanActivate {
-  constructor(
-    private readonly _guardService: GuardService,
-    private readonly _router: Router
-  ) {}
+  isAuth: boolean;
+  constructor(private readonly _authService: AuthService) {}
 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
-  ): Observable<boolean> | Promise<boolean> | boolean {
-    return this._guardService.isAuthenticated().then((isAuth) => {
-      if (isAuth) {
-        return true;
-      } else {
-        return false;
-      }
+  ): boolean {
+    this._authService.isAuthenticated().subscribe((resp) => {
+      this.isAuth = resp;
+      console.log(resp);
     });
+    if (this.isAuth) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

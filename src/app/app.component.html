@@ -1,10 +1,11 @@
 <nav class="main__navbar">
   <h1 class="main__title">IT Book store</h1>
   <div class="main__holder">
-    <button class="main__btn" (click)="login()">Login</button>
+    <button class="main__btn" [routerLink]="['login']">Login</button>
     <button class="main__btn" (click)="logout()">Logout</button>
   </div>
   <div class="main__holder">
+    <button class="main__btn" [routerLink]="['/registry']">Registration</button>
     <button
       routerLinkActive="active"
       [routerLinkActiveOptions]="{ exact: true }"

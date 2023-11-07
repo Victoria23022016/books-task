@@ -1,74 +1,62 @@
 import { Injectable } from '@angular/core';
-import { Book } from './book.service';
-
-export interface CartItem {
-  book: Book;
-  count: number;
-}
+import { Book, CartItemCounted } from '../models/models';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
-  cartItems: CartItem[] = [];
+  cartItems = new Map<string, CartItemCounted>();
 
   addToCart(book: Book): void {
-    if (this.cartItems.length === 0) {
-      this.cartItems.push({ book: book, count: 1 });
+    const cartItem = this.cartItems.get(book.isbn13);
+
+    if (!cartItem?.count) {
+      this.cartItems.set(book.isbn13, { ...book, count: 1 });
     } else {
-      const filtratedItems = this.cartItems.filter(
-        (item) => item.book === book
-      );
-      if (filtratedItems.length === 0) {
-        this.cartItems.push({ book: book, count: 1 });
-      } else {
-        const indexOfItem = this.findIndexOfItem(book.isbn13);
-        this.cartItems[indexOfItem].count += 1;
-      }
+      this.cartItems.set(book.isbn13, {
+        ...book,
+        count: cartItem.count + 1,
+      });
     }
   }
 
   decreaseBook(isbn13: string): void {
-    const indexOfItem = this.findIndexOfItem(isbn13);
-    this.cartItems[indexOfItem].count -= 1;
-    if (this.checkForNullItem(isbn13)) {
+    const cartItem = this.cartItems.get(isbn13);
+    if (cartItem && cartItem?.count !== 1) {
+      this.cartItems.set(isbn13, {
+        ...cartItem,
+        count: cartItem.count - 1,
+      });
+    } else {
       this.deleteBook(isbn13);
     }
   }
 
-  deleteBook(isbn13: string): void {
-    const indexOfItem = this.findIndexOfItem(isbn13);
-    this.cartItems.splice(indexOfItem, 1);
-  }
+  checkForNullItem(isbn13: string) {}
 
-  checkForNullItem(isbn13: string): boolean {
-    const indexOfItem = this.findIndexOfItem(isbn13);
-    return this.cartItems[indexOfItem].count === 0 ? true : false;
+  deleteBook(isbn13: string): void {
+    this.cartItems.delete(isbn13);
   }
 
   checkCartForEmpty(): boolean {
-    return this.cartItems.length === 0 ? true : false;
+    return !!this.cartItems.size;
   }
 
-  checkItem(book: Book): boolean {
-    return this.cartItems.find((item) => item.book === book) ? true : false;
+  checkItem(isbn13: string): boolean {
+    return this.cartItems.has(isbn13);
   }
 
-  getCount(book: Book): number {
-    const indexOfItem = this.findIndexOfItem(book.isbn13);
-    return this.cartItems[indexOfItem].count;
+  getCount(isbn13: string): number {
+    return this.cartItems.get(isbn13)?.count || 0;
   }
 
   calcTotalCost(): number {
-    let totalCost = this.cartItems
-      .map((el) => +el.book.price.slice(1, el.book.price.length) * el.count)
-      .reduce((sum, number) => {
-        return sum + number;
-      }, 0);
-    return totalCost;
-  }
+    let totalCost: number = 0;
+    this.cartItems.forEach(({ count, price }) => {
+      let cartSum = count * +price.slice(1);
+      totalCost += cartSum;
+    });
 
-  private findIndexOfItem(isbn13: string): number {
-    return this.cartItems.findIndex((item) => item.book.isbn13 === isbn13);
+    return totalCost;
   }
 }

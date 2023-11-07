@@ -1,0 +1,24 @@
+<div class="form__container">
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <h1 class="main__title">Register:</h1>
+    <div class="form__control">
+      <label>Email:</label>
+      <input type="text" placeholder="email" formControlName="email" />
+      <div *ngIf="form.get('email')?.invalid && form.get('email')?.touched">
+        <small class="main__error">*you need to fill the graph</small>
+      </div>
+    </div>
+    <div class="form__control">
+      <label>Password:</label>
+      <input type="text" placeholder="password" formControlName="password" />
+      <div
+        *ngIf="form.get('password')?.invalid && form.get('password')?.touched"
+      >
+        <small class="main__error">*you need to fill the graph</small>
+      </div>
+    </div>
+    <button class="main__btn" type="submit" [disabled]="form.invalid">
+      Submit
+    </button>
+  </form>
+</div>

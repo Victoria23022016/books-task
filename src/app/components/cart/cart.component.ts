@@ -5,7 +5,8 @@ import {
   OnInit,
 } from '@angular/core';
 import { Book } from '../../services/book.service';
-import { CartItem, CartService } from '../../services/cart.service';
+import { CartService } from '../../services/cart.service';
+import { CartItemCounted } from '../../models/models';
 
 @Component({
   selector: 'app-cart',
@@ -14,7 +15,7 @@ import { CartItem, CartService } from '../../services/cart.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CartComponent implements OnInit, DoCheck {
-  cartItems: CartItem[];
+  cartItems: Map<string, CartItemCounted>;
   isEmpty: boolean;
   totalCost: number;
 
@@ -25,7 +26,7 @@ export class CartComponent implements OnInit, DoCheck {
   }
 
   ngDoCheck() {
-    this.isEmpty = this._cartService.checkCartForEmpty() ? true : false;
+    this.isEmpty = this._cartService.checkCartForEmpty() ? false : true;
     this.totalCost = this._cartService.calcTotalCost();
   }
 
@@ -34,9 +35,7 @@ export class CartComponent implements OnInit, DoCheck {
   }
 
   minusBook(isbn13: string): void {
-    if (!(this.isEmpty = this._cartService.checkForNullItem(isbn13))) {
-      this._cartService.decreaseBook(isbn13);
-    }
+    this._cartService.decreaseBook(isbn13);
   }
 
   deleteBook(isbn13: string): void {

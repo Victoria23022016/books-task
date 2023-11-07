@@ -35,3 +35,9 @@
   max-width: 1000px;
   margin: 0 auto;
 }
+
+.main__error {
+  color: red;
+  font-style: italic;
+  font-size: smaller;
+}

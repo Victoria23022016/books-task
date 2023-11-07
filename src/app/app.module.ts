@@ -9,6 +9,9 @@ import { BookCardComponent } from './components/book-card/book-card.component';
 import { BooksComponent } from './components/books/books.component';
 import { ErrorComponent } from './components/error/error.component';
 import { BookSearchComponent } from './components/book-search/book-search.component';
+import { RegistryComponent } from './registry/registry.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -20,8 +23,10 @@ import { BookSearchComponent } from './components/book-search/book-search.compon
     BooksComponent,
     ErrorComponent,
     BookSearchComponent,
+    RegistryComponent,
+    LoginComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

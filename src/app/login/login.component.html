@@ -1,0 +1,24 @@
+<div class="form__container">
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <h1>Login:</h1>
+    <div class="form__control">
+      <label>Email:</label>
+      <input type="text" placeholder="email" formControlName="email" />
+    </div>
+    <div class="form__control">
+      <label>Password:</label>
+      <input type="text" placeholder="password" formControlName="password" />
+    </div>
+    <button class="main__btn" type="submit" [disabled]="form.invalid">
+      Submit
+    </button>
+  </form>
+  <ng-container *ngIf="!incorrect">
+    <small class="main__error"
+      >Either the email or password is incorrect!</small
+    >
+  </ng-container>
+  <ng-container *ngIf="logged">
+    <small>You are logged in!</small>
+  </ng-container>
+</div>
