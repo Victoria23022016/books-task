@@ -5,7 +5,19 @@
       <label>Email:</label>
       <input type="text" placeholder="email" formControlName="email" />
       <div *ngIf="form.get('email')?.invalid && form.get('email')?.touched">
-        <small class="main__error">*you need to fill the graph</small>
+        <small
+          *ngIf="form.get('email')?.errors?.['required']"
+          class="main__error"
+          >*you need to fill the graph</small
+        >
+        <small
+          class="main__error"
+          *ngIf="form.get('email')?.errors?.['restrictedEmail']"
+          >*this email is already taken</small
+        >
+        <small *ngIf="form.get('email')?.errors?.['email']" class="main__error"
+          >*this email is incorrect</small
+        >
       </div>
     </div>
     <div class="form__control">
@@ -21,7 +33,7 @@
       Submit
     </button>
   </form>
-  <div>
+  <div class="main__text">
     <p>If you already have account, please log in</p>
     <button class="main__btn" [routerLink]="['/']">login</button>
   </div>

@@ -9,6 +9,7 @@ import { AuthService } from './services/auth.service';
 @Injectable({ providedIn: 'root' })
 export class AuthGuard implements CanActivate {
   isAuth: boolean;
+
   constructor(private readonly _authService: AuthService) {}
 
   canActivate(
@@ -17,7 +18,6 @@ export class AuthGuard implements CanActivate {
   ): boolean {
     this._authService.isAuthenticated().subscribe((resp) => {
       this.isAuth = resp;
-      console.log(resp);
     });
     if (this.isAuth) {
       return true;

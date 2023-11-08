@@ -10,7 +10,6 @@ import {
   Subject,
   debounceTime,
   distinctUntilChanged,
-  mergeMap,
   switchMap,
 } from 'rxjs';
 import { Book } from '../../services/book.service';

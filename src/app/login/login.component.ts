@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Params, Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
@@ -12,15 +12,15 @@ import { AuthService } from '../services/auth.service';
 export class LoginComponent {
   form: FormGroup;
   formData: Params;
-  incorrect: boolean = true;
-  logged: boolean = false;
+  correct: boolean = true;
+  admission: boolean = false;
 
   constructor(
     private readonly _authService: AuthService,
     private readonly _router: Router
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.form = new FormGroup({
       email: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required]),
@@ -31,9 +31,9 @@ export class LoginComponent {
     this.formData = { ...this.form.value };
     if (this._authService.checkUserInLocalStorage(this.formData)) {
       this._authService.login();
-      this.logged = true;
+      this.admission = true;
     } else {
-      this.incorrect = false;
+      this.correct = false;
     }
     this.form.reset();
     this._router.navigate(['/main']);

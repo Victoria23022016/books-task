@@ -8,16 +8,13 @@ export class AuthService {
 
   login(): void {
     this.isAuth$ = this.isAuth$.pipe(mapTo(true));
-    console.log('login'); //убрать
   }
 
   logout(): void {
     this.isAuth$ = this.isAuth$.pipe(mapTo(false));
-    console.log('logout'); //убрать
   }
 
   isAuthenticated(): Observable<boolean> {
-    this.isAuth$.subscribe((resp) => console.log(resp));
     return this.isAuth$;
   }
 
@@ -26,15 +23,8 @@ export class AuthService {
   }
 
   checkEmailInLocalStorage(email: string): boolean {
-    // const check = window.localStorage.getItem(`${email}`); //возвращает в json!!!
-    // if (check) {
-    //   // console.log(check);
-    //   return true; /*JSON.parse(check) ? true : false;*/
-    // } else {
-    //   return false;
-    // }
-    return true;
-  } //для использования при регистрации
+    return window.localStorage.getItem(`${email}`) ? true : false;
+  }
 
   checkUserInLocalStorage(formData: Params): boolean {
     const user = window.localStorage.getItem(`${formData['email']}`);

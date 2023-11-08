@@ -6,7 +6,6 @@ import {
 } from '@angular/core';
 import { Book } from '../../services/book.service';
 import { CartService } from 'src/app/services/cart.service';
-import { count } from 'rxjs';
 
 @Component({
   selector: 'app-books',

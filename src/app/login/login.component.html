@@ -13,16 +13,16 @@
       Submit
     </button>
   </form>
-  <ng-container *ngIf="!incorrect">
+  <ng-container *ngIf="!correct">
     <small class="main__error"
       >Either the email or password is incorrect!</small
     >
   </ng-container>
-  <ng-container *ngIf="logged">
+  <ng-container *ngIf="admission">
     <small>You are logged in!</small>
   </ng-container>
 </div>
-<div>
+<div class="main__text">
   <p>If you don't have an account, please make a registration</p>
   <button class="main__btn" [routerLink]="['/registry']">Registration</button>
 </div>
