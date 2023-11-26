@@ -29,7 +29,7 @@ export class DetailedComponent implements OnInit {
           this.book = checkBook;
         }
 
-        if (this._cartService.checkItem(this.book)) {
+        if (this._cartService.checkItem(this.book.isbn13)) {
           this.inCart = true;
           this.updateBookCount();
         }
@@ -44,6 +44,6 @@ export class DetailedComponent implements OnInit {
   }
 
   updateBookCount(): void {
-    this.bookCount = this._cartService.getCount(this.book);
+    this.bookCount = this._cartService.getCount(this.book.isbn13);
   }
 }

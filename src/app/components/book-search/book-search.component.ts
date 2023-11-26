@@ -1,11 +1,16 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnInit,
+} from '@angular/core';
 import { BookService } from '../../services/book.service';
 import {
   Observable,
   Subject,
   debounceTime,
   distinctUntilChanged,
-  mergeMap,
+  switchMap,
 } from 'rxjs';
 import { Book } from '../../services/book.service';
 
@@ -16,8 +21,9 @@ import { Book } from '../../services/book.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BookSearchComponent implements OnInit {
-  private _searchTerms = new Subject<string>();
+  @Input() books: Book[];
   books$: Observable<Book[]>;
+  private _searchTerms = new Subject<string>();
 
   constructor(private readonly _bookService: BookService) {}
 
@@ -25,7 +31,9 @@ export class BookSearchComponent implements OnInit {
     this.books$ = this._searchTerms.pipe(
       debounceTime(500),
       distinctUntilChanged(),
-      mergeMap((value: string) => this._bookService.searchBook(value))
+      switchMap((value: string) =>
+        this._bookService.searchBook(value, this.books)
+      )
     );
   }
 

@@ -1,2 +1,4 @@
-<app-book-search></app-book-search>
-<app-books></app-books>
+<ng-container *ngIf="books$ | async as books">
+  <app-book-search [books]="books"></app-book-search>
+  <app-books [books]="books"></app-books>
+</ng-container>

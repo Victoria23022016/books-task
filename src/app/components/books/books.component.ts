@@ -1,5 +1,11 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { Book, BookService } from '../../services/book.service';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  DoCheck,
+  Input,
+} from '@angular/core';
+import { Book } from '../../services/book.service';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-books',
@@ -7,12 +13,22 @@ import { Book, BookService } from '../../services/book.service';
   styleUrls: ['./books.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BooksComponent implements OnInit {
-  books: Book[];
+export class BooksComponent implements DoCheck {
+  @Input() books: Book[];
 
-  constructor(private readonly _bookService: BookService) {}
+  constructor(private readonly _cartService: CartService) {}
 
-  ngOnInit(): void {
-    this.books = this._bookService.getBooks();
+  ngDoCheck(): void {
+    this.books = this.books.map(
+      (book) => (book = { ...book, count: this.updateCount(book) })
+    );
+  }
+
+  changeCount(book: Book): void {
+    this._cartService.addToCart(book);
+  }
+
+  updateCount(book: Book): number {
+    return this._cartService.getCount(book.isbn13);
   }
 }

@@ -1,0 +1,12 @@
+.form__control {
+  display: flex;
+  flex-direction: column;
+  min-height: 60px;
+  max-width: 250px;
+  gap: 5px;
+  margin-top: 5px;
+}
+
+.form__container {
+  margin: auto;
+}

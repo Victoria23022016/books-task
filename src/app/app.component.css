@@ -13,9 +13,16 @@
 }
 
 .main__title {
+  font-family: Georgia, "Times New Roman", Times, serif;
   margin: auto;
   font-size: 30px;
   font-weight: 400;
+}
+
+.main__text {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 15px;
+  font-weight: 200;
 }
 
 .main__holder {
@@ -34,4 +41,10 @@
 .main__container {
   max-width: 1000px;
   margin: 0 auto;
+}
+
+.main__error {
+  color: red;
+  font-style: italic;
+  font-size: smaller;
 }

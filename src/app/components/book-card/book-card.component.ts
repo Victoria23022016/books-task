@@ -1,11 +1,12 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  DoCheck,
+  EventEmitter,
   Input,
-  OnInit,
+  Output,
 } from '@angular/core';
 import { Book } from '../../services/book.service';
-import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-book-card',
@@ -13,28 +14,21 @@ import { CartService } from '../../services/cart.service';
   styleUrls: ['./book-card.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BookCardComponent implements OnInit {
+export class BookCardComponent implements DoCheck {
   @Input() book: Book;
+  @Output() onAdd: EventEmitter<Book> = new EventEmitter<Book>();
 
   inCart = false;
   bookCount: number;
 
-  constructor(private readonly _cartService: CartService) {}
-
-  ngOnInit(): void {
-    if (this._cartService.checkItem(this.book)) {
+  ngDoCheck(): void {
+    if (this.book.count && this.book.count !== 0) {
       this.inCart = true;
-      this.updateBookCount();
+      this.bookCount = this.book.count;
     }
   }
 
   addToCart(book: Book): void {
-    this._cartService.addToCart(book);
-    this.inCart = true;
-    this.updateBookCount();
-  }
-
-  updateBookCount() {
-    this.bookCount = this._cartService.getCount(this.book);
+    this.onAdd.emit(book);
   }
 }
